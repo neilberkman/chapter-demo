@@ -1,0 +1,48 @@
+GIT
+  remote: https://github.com/iamAzeem/taglib-ruby
+  revision: 95c1f4fdfd01f3958822b507b981419f2ad3a494
+  branch: support-for-chap-and-ctoc-frames
+  specs:
+    taglib-ruby (1.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ast (2.4.1)
+    coderay (1.1.3)
+    method_source (1.0.0)
+    open3 (0.1.1)
+    parallel (1.20.1)
+    parser (2.7.2.0)
+      ast (~> 2.4.1)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    rainbow (3.0.0)
+    regexp_parser (2.0.1)
+    rexml (3.2.4)
+    rubocop (1.6.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.5)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.2.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (1.3.0)
+      parser (>= 2.7.1.5)
+    ruby-progressbar (1.10.1)
+    unicode-display_width (1.7.0)
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  open3 (~> 0.1.1)
+  pry (~> 0.13.1)
+  rubocop (~> 1.6, >= 1.6.1)
+  taglib-ruby!
+
+BUNDLED WITH
+   2.2.3
