@@ -51,9 +51,9 @@ class ChapDemo
       )
 
       prev_end_time = 0
-      chapter_infos.each do |chapter_info|
+      chapter_infos.each_with_index do |chapter_info, i|
         tag.add_frame(
-          build_chapter_frame(chapter_info, prev_end_time)
+          build_chapter_frame(chapter_info, prev_end_time, i + 1)
         )
         prev_end_time += chapter_info[:duration_ms]
       end
@@ -67,8 +67,8 @@ class ChapDemo
     toc.is_top_level = true
     toc.is_ordered = true
 
-    chapter_infos.each do |chapter_info|
-      toc.add_child_element(chapter_element_id(chapter_info[:chapter_num]))
+    chapter_infos.each_with_index do |_chapter_info, i|
+      toc.add_child_element(chapter_element_id(i + 1))
     end
 
     toc.add_embedded_frame(
@@ -78,8 +78,8 @@ class ChapDemo
     toc
   end
 
-  def build_chapter_frame(chapter_info, prev_end_time)
-    element_id = chapter_element_id(chapter_info[:chapter_num])
+  def build_chapter_frame(chapter_info, prev_end_time, chapter_num)
+    element_id = chapter_element_id(chapter_num)
 
     frames = [
       build_title_frame(chapter_info[:title]),
@@ -139,13 +139,14 @@ class ChapDemo
   end
 
   def create_episode(chapter_infos)
+    Dir.mkdir OUTPUT_DIR unless Dir.exist? OUTPUT_DIR
     output_file = "#{OUTPUT_DIR}/episode.mp3"
     chapter_files = chapter_infos.map do |chapter_info|
       input_file_path(chapter_info[:audio])
     end.join(' ')
 
     cmd = "sox #{chapter_files} #{output_file}"
-    stdout, stderr, _status = Open3.capture3(cmd)
+    _stdout, _stderr, _status = Open3.capture3(cmd)
 
     output_file
   end
